@@ -1,5 +1,6 @@
 ﻿using ErrorHandling.Web.Services;
 using Microsoft.AspNetCore.Mvc;
+using System.Diagnostics;
 
 namespace ErrorHandling.Web.Controllers
 {
@@ -11,12 +12,16 @@ namespace ErrorHandling.Web.Controllers
         [HttpGet("error/exception")]
         public async Task <IActionResult> ServerError()
         {
-          await slowService.DoSlowWork();
+            await slowService.DoSlowWork();
             return View();
         }
         [HttpGet("error/http/{statusCode}")]
-        public IActionResult HttpError(int statusCode)
+        public async Task<IActionResult> HttpErrorAsync(int statusCode)
         {
+            var timer = Stopwatch.StartNew();
+            await slowService.DoSlowWork();
+            timer.Stop();
+            Console.WriteLine($"Total: {timer.Elapsed.TotalSeconds}");
             return View(statusCode);
         }
     }

@@ -2,7 +2,7 @@
 
 var builder = WebApplication.CreateBuilder(new WebApplicationOptions {
 
-    EnvironmentName = Environments.Development
+    EnvironmentName = Environments.Production
 
 });
 
@@ -11,12 +11,13 @@ var app = builder.Build();
 if (!app.Environment.IsDevelopment())
 {
     app.UseExceptionHandler("/throw");
+    app.UseExceptionHandler("/error/exception");
     app.UseStatusCodePagesWithRedirects("/error/http/{0}");
 }
 
-else
-{
-    app.UseExceptionHandler("/error/exception");
-}
-    app.MapControllers();
+//else
+//{
+//    app.UseExceptionHandler("/error/exception");
+//}
+app.MapControllers();
 app.Run();
