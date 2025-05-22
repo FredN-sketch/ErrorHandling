@@ -1,7 +1,11 @@
 
 
+var builder = WebApplication.CreateBuilder(new WebApplicationOptions {
 
-var builder = WebApplication.CreateBuilder(args);
+    EnvironmentName = Environments.Development
+
+});
+
 builder.Services.AddControllersWithViews();
 var app = builder.Build();
 if (app.Environment.IsDevelopment())
@@ -12,7 +16,7 @@ if (app.Environment.IsDevelopment())
 
 else
 {
-    app.UseExceptionHandler("error/exception");
+    app.UseExceptionHandler("/error/exception");
 }
     app.MapControllers();
 app.Run();

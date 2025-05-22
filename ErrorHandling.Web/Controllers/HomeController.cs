@@ -4,6 +4,8 @@ namespace ErrorHandling.Web.Controllers
 {
     public class HomeController : Controller
     {
+        [HttpGet("")]
+
         public IActionResult Index()
         {
            
@@ -12,7 +14,7 @@ namespace ErrorHandling.Web.Controllers
         [HttpGet("/throw")]
         public IActionResult Throw()
         {
-            throw new Exception("");
+            throw new Exception("test");
            
         }
     }
