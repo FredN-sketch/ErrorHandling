@@ -1,12 +1,17 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using ErrorHandling.Web.Services;
+using Microsoft.AspNetCore.Mvc;
 
 namespace ErrorHandling.Web.Controllers
 {
     public class ErrorController : Controller
     {
+        static SlowService slowService = new SlowService();
+
+            
         [HttpGet("error/exception")]
-        public IActionResult ServerError()
+        public async Task <IActionResult> ServerError()
         {
+          await slowService.DoSlowWork();
             return View();
         }
         [HttpGet("error/http/{statusCode}")]
@@ -14,7 +19,5 @@ namespace ErrorHandling.Web.Controllers
         {
             return View(statusCode);
         }
-
-
     }
 }

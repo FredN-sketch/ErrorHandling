@@ -8,7 +8,7 @@ var builder = WebApplication.CreateBuilder(new WebApplicationOptions {
 
 builder.Services.AddControllersWithViews();
 var app = builder.Build();
-if (app.Environment.IsDevelopment())
+if (!app.Environment.IsDevelopment())
 {
     app.UseExceptionHandler("/throw");
     app.UseStatusCodePagesWithRedirects("/error/http/{0}");
