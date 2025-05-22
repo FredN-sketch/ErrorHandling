@@ -12,8 +12,8 @@ namespace ErrorHandling.Web.Controllers
         [HttpGet("/throw")]
         public IActionResult Throw()
         {
-
-            return View();
+            throw new Exception("");
+           
         }
     }
 }

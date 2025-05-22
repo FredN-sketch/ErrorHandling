@@ -1,11 +1,13 @@
-﻿<!DOCTYPE html>
+﻿@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+
+<!DOCTYPE html>
     <html>
     <head>
         <title>Wire-frame 1</title>
     </head>
     <body>
     <h1>Handling Errors</h1>
-    <a asp-controller>Simulate a server error</a>  
-    <a>Simulate an http error</a>
+    <a asp-controller="Home" asp-action="Throw">Simulate a server error</a>
+    <a asp-controller="Error" asp-action="HttpError">Simulate an http error</a>
     </body>
     </html>
